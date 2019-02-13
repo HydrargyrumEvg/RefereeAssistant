@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ITU.RefereeAssistant.Domain.Models
 {
-    class Rating
+    public class Rating
     {
-        Player Player { get; set; }
+        public Player Player { get; set; }
         long Score { get; set; }
     }
 }

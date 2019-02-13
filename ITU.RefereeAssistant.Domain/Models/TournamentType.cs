@@ -4,9 +4,12 @@ using System.Text;
 
 namespace ITU.RefereeAssistant.Domain.Models
 {
-    enum TournamentType
+    /// <summary>
+    /// Тип системы проведения турнира
+    /// </summary>
+    public enum TournamentType
     {
-        Olimpic, 
+        Olimpic, //Олимпийская система
         Swiss,
         Circle,
         Knockout

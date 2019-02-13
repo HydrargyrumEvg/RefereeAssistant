@@ -4,8 +4,12 @@ using System.Text;
 
 namespace ITU.RefereeAssistant.Domain.Models
 {
-    class Player
+    public class Player
     {
-        string Name { get; set; }
+        public string Name { get; set; }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -49,5 +49,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ITU.RefereeAssistant.BL\ITU.RefereeAssistant.BL.csproj">
+      <Project>{0F8A1E35-9CA6-4329-BBF7-CCFCA4DE4E2A}</Project>
+      <Name>ITU.RefereeAssistant.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ITU.RefereeAssistant.Domain\ITU.RefereeAssistant.Domain.csproj">
+      <Project>{3A5CBC26-8191-402C-9E42-719A1ACF8E36}</Project>
+      <Name>ITU.RefereeAssistant.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,9 +4,18 @@ using System.Text;
 
 namespace ITU.RefereeAssistant.Domain.Models
 {
-    class Round
+    public class Round
     {
+        public Round()
+        {
+            Matches = new List<Match>();
+        }
         long Id { get; set; }
-        Match[] Match { get; set }
+        public List<Match> Matches { get; set; }
+
+        internal void AddMatch(Match match)
+        {
+            Matches.Add(match);
+        }
     }
 }
