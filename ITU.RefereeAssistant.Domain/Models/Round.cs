@@ -13,7 +13,7 @@ namespace ITU.RefereeAssistant.Domain.Models
         long Id { get; set; }
         public List<Match> Matches { get; set; }
 
-        internal void AddMatch(Match match)
+        public void AddMatch(Match match)
         {
             Matches.Add(match);
         }

@@ -5,19 +5,45 @@ using ITU.RefereeAssistant.Domain.TourType;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ITU.RefereeAssistent.Consol
 {
     class Program        
-    {        
+    {   
+        static List<ITournamentType> GetTypes()
+        {
+            var result = new List<ITournamentType>();
+            //var assembly = Assembly.GetAssembly(typeof(ITournamentType));
+            //var assembly = Assembly.LoadFile(System.IO.Directory.GetCurrentDirectory());
+            var currentDirectory = Environment.CurrentDirectory;
+            var dlls = Directory.GetFiles(currentDirectory, "*.dll");            
+            foreach (var dll in dlls)
+            {
+                var assembly = Assembly.LoadFile(dll);
+                var types = assembly.GetTypes();
+                foreach (var type in types)
+                {
+                    //Console.WriteLine(type.FullName);
+                    var interfaces = type.GetInterfaces();
+                    if (interfaces.Any(inter => inter.Name == "ITournamentType"))
+                    {
+                        var tournamentType = Activator.CreateInstance(type) as ITournamentType;
+                        if (tournamentType != null)
+                        {
+                            result.Add(tournamentType);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
         static void Main(string[] args)
         {
-            List<ITournamentType> tourTypes = new List<ITournamentType>()
-            {
-                new OlympicTourType()
-            };
+            List<ITournamentType> tourTypes = GetTypes();
             string playerCntStr;
             int playerCnt;
             string playerName;
