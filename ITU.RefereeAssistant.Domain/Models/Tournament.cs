@@ -18,19 +18,17 @@ namespace ITU.RefereeAssistant.Domain.Models
         /// <summary>
         /// ctor
         /// </summary>
-        /// <param name="start">Стартовый набор команд</param>
-        /// <param name="type">Тип системы проведения турнира</param>
-        public Tournament(Rating[] start, TournamentType type):this()
+        /// <param name="start">Стартовый набор команд</param>        
+        public Tournament(Rating[] start):this()
         {
-            Start.AddRange(start);
-            Type = type;
+            Start.AddRange(start);            
         }
         #region Скрытые свойства        
         string Name { get; set; }
         TournamentType Type { get; set; }
-        List <Rating> Start { get; set; }
-        List <Rating> Current { get; set; }
-        List<Round> Rounds { get; set; }
+        public List <Rating> Start { get; set; }
+        public List <Rating> Current { get; set; }
+        public List<Round> Rounds { get; set; }
         #endregion
         public Round GetNextRound()
         {
@@ -50,6 +48,10 @@ namespace ITU.RefereeAssistant.Domain.Models
                     case TournamentType.Olimpic:
                         match.Players.Add(Start[i * 2].Player);
                         match.Players.Add(Start[i * 2 + 1].Player);
+                        break;
+                    case TournamentType.Circle:
+                        match.Players.Add(Start[i].Player);
+                        match.Players.Add(Start[matchCount * 2 - i].Player);
                         break;
                     default:
                         break;

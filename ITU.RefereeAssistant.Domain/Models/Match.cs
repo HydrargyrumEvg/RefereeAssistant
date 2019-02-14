@@ -9,10 +9,11 @@ namespace ITU.RefereeAssistant.Domain.Models
         public Match()
         {
             Players = new List<Player>();
+            Ratings = new List<Rating>();
         }
         long Id { get; set; }
-        public List<Player> Players { get; set; }
-        Player[] Ratings { get; set; }
+        public IList<Player> Players { get; set; }
+        public IList<Rating> Ratings { get; set; }
         public override string ToString()
         {
             return String.Join(" | ", Players);

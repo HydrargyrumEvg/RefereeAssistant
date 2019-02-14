@@ -1,6 +1,8 @@
-﻿using ITU.RefereeAssistant.Domain.Models;
+﻿using ITU.RefereeAssistant.Domain;
+using ITU.RefereeAssistant.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ITU.RefereeAssistant.BL
@@ -10,14 +12,15 @@ namespace ITU.RefereeAssistant.BL
     /// </summary>
     public class TournamentService
     {
+        ITournamentType tourType { get; set; }
         /// <summary>
         /// Создать новый турнир <see cref="Tournament"/>
         /// </summary>
         /// <returns>Турнир</returns>
-        public Tournament Create(Rating[] ratings, TournamentType type)
+        public Tournament Create(Rating[] ratings, ITournamentType type)
         {
-            var tournament = new Tournament(ratings, type);
-            return tournament;
+            tourType = type;
+            return new Tournament(ratings);
         }
         /// <summary>
         /// Сформировать раунд
@@ -26,7 +29,9 @@ namespace ITU.RefereeAssistant.BL
         /// <returns></returns>
         public Round GenerateRound(Tournament tournament)
         {
-            var round = tournament.GetNextRound();
+            var players = tournament.Start.Select(rating => rating.Player);
+            var round = tourType.GetNextRound(players, tournament.Rounds);
+            tournament.Rounds.Add(round);
             return round;
         }
     }
