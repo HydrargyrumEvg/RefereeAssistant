@@ -40,8 +40,8 @@ namespace ITU.RefereeAssistant.WinDesktop
                 Name = "label1",
                 Size = new System.Drawing.Size(78, 13),
                 TabIndex = 3,
-                Text = tbPlayerName.Text,
-                BackColor = Color.White,
+                Text = tbPlayerName.Text
+                //BackColor = Color.White,
             };
             tbPlayerName.Text = "";
             this.gbPlayer.Controls.Add(label);

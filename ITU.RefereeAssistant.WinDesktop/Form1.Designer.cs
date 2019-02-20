@@ -36,6 +36,14 @@
             this.lblPlayerName = new System.Windows.Forms.Label();
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.tbPlayerName = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.gbRound = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.matchControl1 = new ITU.RefereeAssistant.WinDesktop.MatchControl();
+            this.gbPlayer.SuspendLayout();
+            this.gbRound.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbTourType
@@ -46,7 +54,7 @@
             "Швейцарская"});
             this.cbTourType.Location = new System.Drawing.Point(15, 25);
             this.cbTourType.Name = "cbTourType";
-            this.cbTourType.Size = new System.Drawing.Size(351, 21);
+            this.cbTourType.Size = new System.Drawing.Size(200, 21);
             this.cbTourType.TabIndex = 0;
             // 
             // lblTourType
@@ -79,9 +87,10 @@
             // 
             // gbPlayer
             // 
-            this.gbPlayer.Location = new System.Drawing.Point(372, 25);
+            this.gbPlayer.Controls.Add(this.button1);
+            this.gbPlayer.Location = new System.Drawing.Point(15, 103);
             this.gbPlayer.Name = "gbPlayer";
-            this.gbPlayer.Size = new System.Drawing.Size(370, 316);
+            this.gbPlayer.Size = new System.Drawing.Size(351, 238);
             this.gbPlayer.TabIndex = 7;
             this.gbPlayer.TabStop = false;
             this.gbPlayer.Text = "Список участник";
@@ -113,11 +122,78 @@
             this.tbPlayerName.TabIndex = 0;
             this.tbPlayerName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbPlayerName_KeyUp);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(260, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // gbRound
+            // 
+            this.gbRound.Controls.Add(this.matchControl1);
+            this.gbRound.Controls.Add(this.textBox1);
+            this.gbRound.Controls.Add(this.label1);
+            this.gbRound.Controls.Add(this.button2);
+            this.gbRound.Location = new System.Drawing.Point(372, 25);
+            this.gbRound.Name = "gbRound";
+            this.gbRound.Size = new System.Drawing.Size(163, 316);
+            this.gbRound.TabIndex = 8;
+            this.gbRound.TabStop = false;
+            this.gbRound.Text = "Раунд №1";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(260, 19);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 137);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(58, 134);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(34, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // matchControl1
+            // 
+            this.matchControl1.FirstPlayer = "label1";
+            this.matchControl1.FirstScore = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.matchControl1.Location = new System.Drawing.Point(7, 19);
+            this.matchControl1.Name = "matchControl1";
+            this.matchControl1.SecondPlayer = "label2";
+            this.matchControl1.SecondScore = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.matchControl1.Size = new System.Drawing.Size(150, 57);
+            this.matchControl1.TabIndex = 3;
+            // 
             // FormReferee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 377);
+            this.Controls.Add(this.gbRound);
             this.Controls.Add(this.btnAddPlayer);
             this.Controls.Add(this.lblPlayerName);
             this.Controls.Add(this.tbPlayerName);
@@ -129,6 +205,9 @@
             this.Name = "FormReferee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Помошник судьи";
+            this.gbPlayer.ResumeLayout(false);
+            this.gbRound.ResumeLayout(false);
+            this.gbRound.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,6 +223,12 @@
         private System.Windows.Forms.Button btnAddPlayer;
         private System.Windows.Forms.TextBox tbPlayerName;
         private System.Windows.Forms.Label lblPlayerName;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox gbRound;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button2;
+        private MatchControl matchControl1;
     }
 }
 
