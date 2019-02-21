@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ITU.RefereeAssistant.Domain.Models.Player>
+
+<p>
+    @Html.TextBox("NewPlayer", "", new { @class = "form-control" })
+    @Helpers.MyButton("+", "AddPlayer()")    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @if(Model != null) {
+
+foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+    }
+
+</table>
+<div id="players">
+
+</div>
+<script type="text/javascript">
+    $(document).ready(AddEnterHandler)
+
+    function AddEnterHandler() {
+        $("#Player_NewPlayer").bind("keydown", function (event) {
+            if (event.key == "Enter") {
+                AddPlayer();
+                return false;
+            }
+            
+        });
+    }
+    function AddPlayer() {
+        var playerName = $("#Player_NewPlayer");
+        var count = $("#players > input").length
+        $("#players").append("<input type=\"text\" name=\"Player[" +count+ "].Name\" value=\"" + playerName.val() + "\"/>");
+        playerName.val("").focus();        
+    }
+
+</script>

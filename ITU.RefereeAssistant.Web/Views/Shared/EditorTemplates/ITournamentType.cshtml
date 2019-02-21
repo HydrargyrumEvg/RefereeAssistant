@@ -1,0 +1,22 @@
+﻿@model ITournamentType
+@using ITU.RefereeAssistant.Domain
+@{ 
+    var types = new List<SelectListItem>()
+    {
+        new SelectListItem ()
+        {
+            Text = "Олимпийская система"
+        },
+        new SelectListItem ()
+        {
+            Text = "Швейцарская система"
+        },
+        new SelectListItem ()
+        {
+            Text = "Круговая система"
+        }
+    };
+}
+<div class="col-md-10">
+    @Html.DropDownList("", types, new { @class = "form-control" })
+</div>

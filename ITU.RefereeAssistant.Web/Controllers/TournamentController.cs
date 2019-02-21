@@ -9,6 +9,16 @@ namespace ITU.RefereeAssistant.Web.Controllers
 {
     public class TournamentController : Controller
     {
+        [HttpGet]
+        public ActionResult Start()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Start(TournamentStarter starter)
+        {
+            return View();
+        }
         // GET: Tourament
         public ActionResult Index(User user)
         {            
