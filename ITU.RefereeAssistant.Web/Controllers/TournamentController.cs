@@ -1,4 +1,8 @@
-﻿using ITU.RefereeAssistant.Web.Models;
+﻿using ITU.RefereeAssistant.Domain.Models;
+using ITU.RefereeAssistant.Web.Extensions;
+using ITU.RefereeAssistant.Web.Models;
+using ITU.RefereeAssistant.Web.Services;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +13,33 @@ namespace ITU.RefereeAssistant.Web.Controllers
 {
     public class TournamentController : Controller
     {
+        private PlayerService PlayerService = new PlayerService();
         [HttpGet]
         public ActionResult Start()
         {
-            return View();
+            var model = new TournamentStarter();           
+            model.Player = PlayerService.GetAll();
+
+            return View(model);
         }
         [HttpPost]
         public ActionResult Start(TournamentStarter starter)
         {
             return View();
         }
+        public ActionResult Delete(Player player)
+        {
+            PlayerService.Delete(player);
+            return RedirectToAction("Start");
+        }
+        public ActionResult Add(Player player)
+        {
+            PlayerService.Save(player);
+            return RedirectToAction("Start");
+        }
         // GET: Tourament
         public ActionResult Index(User user)
         {            
-
             return View("Edit", user);
         }
         [HttpPost]

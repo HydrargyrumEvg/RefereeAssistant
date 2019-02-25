@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="ITU.RefereeAssistant.Domain.Models" assembly="ITU.RefereeAssistant.Domain">
+
+  <class name="Match" table="Match">
+    
+    <id name="Id">      
+      <generator class="native" />
+    </id>
+   
+    <property name="RoundId"/>      
+  </class>
+
+</hibernate-mapping>

@@ -4,4 +4,18 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Mapping\Match.hbm.xml" />
+    <None Remove="Mapping\Player.hbm.xml" />
+    <None Remove="Mapping\Round.hbm.xml" />
+    <None Remove="Mapping\Tournament.hbm.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Tournament.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Round.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Match.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Player.hbm.xml" />
+  </ItemGroup>
+
 </Project>
