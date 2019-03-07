@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 
 namespace ITU.RefereeAssistant.Web.Extensions
 {
@@ -14,7 +15,9 @@ namespace ITU.RefereeAssistant.Web.Extensions
 
         static NHibernateHelper()
         {
-            _sessionFactory = new Configuration().Configure().BuildSessionFactory();
+            var config = new Configuration().Configure();
+            _sessionFactory = config.BuildSessionFactory();
+            new SchemaExport(config).Create(false, false);
         }
 
         public static ISession GetCurrentSession()

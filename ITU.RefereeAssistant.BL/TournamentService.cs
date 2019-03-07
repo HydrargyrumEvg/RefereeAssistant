@@ -17,10 +17,10 @@ namespace ITU.RefereeAssistant.BL
         /// Создать новый турнир <see cref="Tournament"/>
         /// </summary>
         /// <returns>Турнир</returns>
-        public Tournament Create(Rating[] ratings, ITournamentType type)
+        public Tournament Create(Player[] player, ITournamentType type)
         {
             tourType = type;
-            return new Tournament(ratings);
+            return new Tournament(player);
         }
         /// <summary>
         /// Сформировать раунд
@@ -28,11 +28,14 @@ namespace ITU.RefereeAssistant.BL
         /// <param name="tournament"></param>
         /// <returns></returns>
         public Round GenerateRound(Tournament tournament)
-        {
-            var players = tournament.Start.Select(rating => rating.Player);
+        {            
+            var players = tournament.Start;
+
             var round = tourType.GetNextRound(players, tournament.Rounds);
+
             tournament.Rounds.Add(round);
-            return round;
+
+            return round;           
         }
     }
 }

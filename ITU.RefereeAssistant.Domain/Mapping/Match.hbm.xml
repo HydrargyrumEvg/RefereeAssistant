@@ -3,12 +3,19 @@
     namespace="ITU.RefereeAssistant.Domain.Models" assembly="ITU.RefereeAssistant.Domain">
 
   <class name="Match" table="Match">
-    
-    <id name="Id">      
+
+    <id name="Id">
       <generator class="native" />
     </id>
-   
-    <property name="RoundId"/>      
+
+    <property name="MatchResult" />
+
+    <many-to-one name="FirstPlayer" class="Player" />
+
+    <many-to-one name="SecondPlayer" class="Player" />
+
+    <many-to-one name="Round" class="Round" />
+
   </class>
 
 </hibernate-mapping>

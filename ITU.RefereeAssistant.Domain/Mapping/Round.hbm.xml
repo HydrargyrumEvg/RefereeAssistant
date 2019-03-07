@@ -3,13 +3,17 @@
     namespace="ITU.RefereeAssistant.Domain.Models" assembly="ITU.RefereeAssistant.Domain">
 
   <class name="Round" table="Round">
-    
-    <id name="Id">      
+
+    <id name="Id">
       <generator class="native" />
     </id>
-   
-    <property name="Name"/>
-    <property name="TournamentId"/>
+    <set name="Matches" table="Match" lazy="false" cascade ="all-delete-orphan" inverse="true" fetch="select">
+      <key>
+        <column name="Round" not-null="true" />
+      </key>
+      <one-to-many class="Match" />
+    </set>
+
   </class>
 
 </hibernate-mapping>

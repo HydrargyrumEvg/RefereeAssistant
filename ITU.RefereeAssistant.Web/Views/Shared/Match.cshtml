@@ -1,0 +1,27 @@
+﻿@model ITU.RefereeAssistant.Domain.Models.Match
+@{
+    var count = ViewData["count"];
+}
+<input class="btn btn-link" type="button" value="@Model.FirstPlayer" />
+<i>VS</i>
+<input class="btn btn-link" type="button" value="@Model.SecondPlayer" />
+
+@Html.EditorFor(item => item.MatchResult)
+
+<script>
+    function MatchResultSend@(count)(MatchResult) {
+        $.ajax({
+            url: "/Round/SaveMatchResult",
+            type: "POST",
+            cache: false,
+            data: {
+                id: @(Model.Id),
+                matchResult: $(matchResult).val()
+            },
+            success: function (result) {
+                console.log("ВСе хорошо")
+            }
+        });
+    }
+</script>
+

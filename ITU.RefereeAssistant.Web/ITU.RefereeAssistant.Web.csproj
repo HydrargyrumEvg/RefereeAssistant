@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoundController.cs" />
     <Compile Include="Controllers\TournamentController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\NHibernateHelper.cs" />
@@ -156,9 +157,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\TournamentStarter.cs" />
+    <Compile Include="Models\TournamentType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\TournamentService.cs" />
+    <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\RoundService.cs" />
     <Compile Include="Services\PlayerService.cs" />
     <Compile Include="Services\MatchService.cs" />
@@ -210,6 +212,9 @@
     <Content Include="Views\Shared\EditorTemplates\ITournamentType.cshtml" />
     <Content Include="Views\Tournament\Start.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Players.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MatchResult.cshtml" />
+    <Content Include="Views\Shared\Match.cshtml" />
+    <Content Include="Views\Round\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\User\" />
@@ -228,6 +233,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ITU.RefereeAssistant.BL\ITU.RefereeAssistant.BL.csproj">
+      <Project>{0F8A1E35-9CA6-4329-BBF7-CCFCA4DE4E2A}</Project>
+      <Name>ITU.RefereeAssistant.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ITU.RefereeAssistant.Domain\ITU.RefereeAssistant.Domain.csproj">
       <Project>{3A5CBC26-8191-402C-9E42-719A1ACF8E36}</Project>
       <Name>ITU.RefereeAssistant.Domain</Name>

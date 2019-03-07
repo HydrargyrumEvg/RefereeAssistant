@@ -1,0 +1,19 @@
+﻿@model ITU.RefereeAssistant.Domain.Models.Round
+@{
+    var count = 0;
+}
+
+<h2>Раунд</h2>
+<div style="width:50%;">
+    <ul class="list-group">
+        @foreach (var match in Model.Matches)
+        {
+            ViewData["count"] = count;
+            <li class="list-group-item">
+                @Html.Partial("Match", match, ViewData)
+            </li>
+            count++;
+        }
+    </ul>
+</div>
+

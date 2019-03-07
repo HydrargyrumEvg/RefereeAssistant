@@ -17,16 +17,16 @@
     <div class="form-group">
         @Html.LabelFor(model => model.TournamentType, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TournamentType)
+            @Html.DropDownList("TournamentType.Id", Model.tournamentTypes)
             @Html.ValidationMessageFor(model => model.TournamentType, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Player, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Players, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Player, "Players")
-            @Html.ValidationMessageFor(model => model.Player, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Players, "Players")
+            @Html.ValidationMessageFor(model => model.Players, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ITU.RefereeAssistant.Domain.Models
 {
-    public class Player
+    public class Player : IEntity
     {
         public virtual long Id { get; set; }
         public virtual string Name { get; set; }        

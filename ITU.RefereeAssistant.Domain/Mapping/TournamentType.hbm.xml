@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
-    namespace="ITU.RefereeAssistant.Domain.Models" assembly="ITU.RefereeAssistant.Domain">
+    namespace="ITU.RefereeAssistant.Domain" assembly="ITU.RefereeAssistant.Domain">
 
-  <class name="Player" table="Player">
+  <class name="TournamentType" table="TournamentType">
     
     <id name="Id">      
       <generator class="identity" />
     </id>
    
-    <property name="Name"/>      
+    <property name="Name"/>
+    <property name="TypeName"/>
   </class>
 
 </hibernate-mapping>

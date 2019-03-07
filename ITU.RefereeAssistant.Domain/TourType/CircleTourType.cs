@@ -24,13 +24,14 @@ namespace ITU.RefereeAssistant.Domain.TourType
             if (lastRound != null)
             {
                 foreach (var match in lastRound.Matches)
-                {
-                    foreach (var rating in match.Ratings)
+                {                    
+                    if (match.MatchResult == MatchResult.FirstWin) 
                     {
-                        if (rating.Score == 3) 
-                        {
-                            winners.Add(rating.Player);
-                        }
+                        winners.Add(match.FirstPlayer);
+                    }
+                    else if (match.MatchResult == MatchResult.SecondWin)
+                    {
+                        winners.Add(match.SecondPlayer);
                     }
                 }
             }
@@ -46,11 +47,8 @@ namespace ITU.RefereeAssistant.Domain.TourType
                 var player1 = currentPlayers.ElementAt(i * 2);
                 var player2 = currentPlayers.ElementAt(i * 2 + 1);
 
-                match.Players.Add(player1);
-                match.Players.Add(player2);
-
-                match.Ratings.Add(new Rating(player1));
-                match.Ratings.Add(new Rating(player2));
+                match.FirstPlayer = player1;
+                match.SecondPlayer = player2;                
 
                 round.AddMatch(match);
             }            

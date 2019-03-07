@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace ITU.RefereeAssistant.Domain.Models
-{
-    public class Round
+{   
+    public class Round : IEntity
     {
         public Round()
         {
             Matches = new List<Match>();
         }
-        long Id { get; set; }
-        public List<Match> Matches { get; set; }
 
-        public void AddMatch(Match match)
+        public virtual long Id { get; set; }
+
+        public virtual ICollection<Match> Matches { get; set; }
+
+        public virtual void AddMatch(Match match)
         {
+            match.Round = this;
             Matches.Add(match);
         }
     }

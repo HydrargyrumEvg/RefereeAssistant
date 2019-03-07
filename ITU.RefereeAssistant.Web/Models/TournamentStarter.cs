@@ -5,14 +5,16 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ITU.RefereeAssistant.Web.Models
 {
     public class TournamentStarter
     {
         [Display(Name = "Система проведения турнира")]
-        public ITournamentType TournamentType{get; set;}
+        public TournamentType TournamentType{get; set;}
         [Display(Name = "Участники")]
-        public  IEnumerable<Player> Player { get; set; }
+        public  IEnumerable<Player> Players { get; set; }
+        public SelectList tournamentTypes { get; set; }
     }
 }

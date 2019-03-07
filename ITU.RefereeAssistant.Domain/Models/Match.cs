@@ -1,22 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ITU.RefereeAssistant.Domain.Models
 {
-    public class Match
+    /// <summary>
+    /// Матч
+    /// </summary>
+    public class Match : IEntity
     {
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public Match()
         {
-            Players = new List<Player>();
-            Ratings = new List<Rating>();
         }
-        long Id { get; set; }
-        public IList<Player> Players { get; set; }
-        public IList<Rating> Ratings { get; set; }
-        public override string ToString()
+
+        /// <summary>
+        /// Идентификатор
+        /// </summary>
+        public virtual long Id { get; set; }
+
+        /// <summary>
+        /// Участники
+        /// </summary>
+        [Obsolete("Используйте свойства FirstPlayer и SecondPlayer", true)]
+        public virtual IList<Player> Players
         {
-            return String.Join(" | ", Players);
+            get { return new List<Player>() { FirstPlayer, SecondPlayer }; }
+            set
+            {
+                if (value.Count >= 2)
+                {
+                    FirstPlayer = value[0];
+                    SecondPlayer = value[1];
+                }
+            }
         }
+
+        public virtual Player FirstPlayer { get; set; }
+
+        public virtual Player SecondPlayer { get; set; }
+
+        /// <summary>
+        /// Результат матча
+        /// </summary>
+        public virtual MatchResult MatchResult { get; set; }
+
+        public virtual Round Round { get; set; }
+
     }
 }
