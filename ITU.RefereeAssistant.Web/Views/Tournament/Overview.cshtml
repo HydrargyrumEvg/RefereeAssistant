@@ -1,0 +1,24 @@
+﻿@model ITU.RefereeAssistant.Web.Models.TournamentOverview
+
+@{
+    ViewBag.Title = "Доступные турниры";
+}
+
+<h2>Турниры</h2>
+
+@{
+    var count = 0;
+}
+<div style="width:50%;">
+    <ul class="list-group">
+        @foreach (var tournament in Model.Tournaments)
+        {
+            ViewData["count"] = count;
+            <li class="list-group-item">
+                @Html.Partial("Tournament", tournament, ViewData)
+            </li>
+            count++;
+        }
+    </ul>
+</div>
+

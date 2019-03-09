@@ -12,15 +12,16 @@ namespace ITU.RefereeAssistant.BL
     /// </summary>
     public class TournamentService
     {
-        ITournamentType tourType { get; set; }
+        public ITournamentType TourType { get; set; }
+        string Description { get; set; }
+        string Author { get; set; }
         /// <summary>
         /// Создать новый турнир <see cref="Tournament"/>
         /// </summary>
         /// <returns>Турнир</returns>
-        public Tournament Create(Player[] player, ITournamentType type)
-        {
-            tourType = type;
-            return new Tournament(player);
+        public Tournament Create(Player[] player, Domain.TournamentType type, string author, string description)
+        {            
+            return new Tournament(player, type, author, description);            
         }
         /// <summary>
         /// Сформировать раунд
@@ -29,9 +30,9 @@ namespace ITU.RefereeAssistant.BL
         /// <returns></returns>
         public Round GenerateRound(Tournament tournament)
         {            
-            var players = tournament.Start;
+            var players = tournament.Start;            
 
-            var round = tourType.GetNextRound(players, tournament.Rounds);
+            var round = TourType.GetNextRound(players, tournament.Rounds);
 
             tournament.Rounds.Add(round);
 

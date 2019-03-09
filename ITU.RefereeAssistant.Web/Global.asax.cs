@@ -24,7 +24,7 @@ namespace ITU.RefereeAssistant.Web
 
             var dbTourTypes = TourTypeService.GetAll().Select(item => item.TypeName);
             //получаем список типов системы
-            var tourTypes = Helper.LoadTournamentTypes(@"C:\Users\Professional\YandexDisk\Обучение\C#\RefereeAssistant\ITU.RefereeAssistant.Web\bin");
+            var tourTypes = Helper.LoadTournamentTypes(AppDomain.CurrentDomain.BaseDirectory + @"bin\");
             foreach (var tourType in tourTypes)
             {
                 var typeName = tourType.GetType().FullName;

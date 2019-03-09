@@ -13,7 +13,7 @@ namespace ITU.RefereeAssistant.Domain
         /// <summary>
         /// Название
         /// </summary>
-        string Name { get; }        
+        string Name { get; }         
         /// <summary>
         /// Получить следующий раунд
         /// </summary>

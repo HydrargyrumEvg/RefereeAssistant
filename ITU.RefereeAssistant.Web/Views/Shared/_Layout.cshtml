@@ -27,6 +27,7 @@
                     <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Турнир", "Index", "Tournament")</li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -37,7 +38,7 @@
             <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
         </footer>
     </div>
-    
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

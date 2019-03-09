@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ITU.RefereeAssistant.Domain.Models.Player>
 @{ var count = 0;}
 <p>
-    @Html.TextBox("NewPlayer", "", new { @class = "form-control" })    
+    @Html.TextBox("NewPlayer", "", new { @class = "form-control" })
     @Helpers.MyButton("+", "AddPlayer()")
 </p>
 <table class="table">
@@ -12,20 +12,22 @@
         <th></th>
     </tr>
 
-    @if(Model != null) {        
-        foreach (var item in Model) {
-    <tr>
-        <td>
-            <input type="hidden" name="Players[@(count)].Id" value="@item.Id" />
-            <input type="hidden" name="Players[@(count)].Name" value="@item.Name" />
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input type="hidden" name="Players[@(count)].Id" value="@item.Id" />
+                    <input type="hidden" name="Players[@(count)].Name" value="@item.Name" />
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
             count++;
         }
     }
@@ -38,19 +40,19 @@
     $(document).ready(AddEnterHandler)
 
     function AddEnterHandler() {
-        $("#Player_NewPlayer").bind("keydown", function (event) {
+        $("#Players_NewPlayer").bind("keydown", function (event) {
             if (event.key == "Enter") {
                 AddPlayer();
                 return false;
             }
-            
+
         });
     }
     function AddPlayer() {
         var playerName = $("#Players_NewPlayer");
         var count = @(count) + $("#players > input").length
         $("#players").append("<input type=\"text\" name=\"Players[" +count+ "].Name\" value=\"" + playerName.val() + "\"/>");
-        playerName.val("").focus();        
+        playerName.val("").focus();
     }
 
 </script>

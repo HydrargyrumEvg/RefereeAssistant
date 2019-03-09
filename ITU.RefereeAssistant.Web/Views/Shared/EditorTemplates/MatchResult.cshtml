@@ -1,15 +1,17 @@
 ﻿@model MatchResult
 @using ITU.RefereeAssistant.Domain.Models
-@{ 
+@{
     var count = ViewData["count"];
     var enumTypes = Enum.GetValues(typeof(MatchResult)).OfType<MatchResult>();
 }
-<label class="radio-inline">
-    <input type="radio" name="MatchResult@(count)" onClick="MatchResultSend@(count)(this)" value="@MatchResult.FirstWin"> Выиграл первый
-</label>
-<label class="radio-inline">
-    <input type="radio" name="MatchResult@(count)" onClick="MatchResultSend@(count)(this)" value="@MatchResult.Draw"> Ничья
-</label>
-<label class="radio-inline">
-    <input type="radio" name="MatchResult@(count)" onClick="MatchResultSend@(count)(this)" value="@MatchResult.SecondWin"> Победа второго
-</label>
+@foreach (var enumType in enumTypes.OrderBy(i => (int)i))
+{
+    <label class="radio-inline">
+        <input type="radio"
+               name="MatchResult@(count)"
+               @(Model == enumType ? "checked=\"checked\"" : "")
+               onClick="MatchResultSend@(count)(this)"
+               value="@(enumType)" />
+        @(enumType.ToString())
+    </label>
+}

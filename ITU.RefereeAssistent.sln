@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITU.RefereeAssistant.WinDes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITU.RefereeAssistant.Web", "ITU.RefereeAssistant.Web\ITU.RefereeAssistant.Web.csproj", "{DA1C8D47-5F8F-4625-96E8-DC406504C51F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityExample", "IdentityExample\IdentityExample.csproj", "{92DD54E8-F7BA-4C43-BB5F-1419999CCEC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DA1C8D47-5F8F-4625-96E8-DC406504C51F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA1C8D47-5F8F-4625-96E8-DC406504C51F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA1C8D47-5F8F-4625-96E8-DC406504C51F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92DD54E8-F7BA-4C43-BB5F-1419999CCEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92DD54E8-F7BA-4C43-BB5F-1419999CCEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92DD54E8-F7BA-4C43-BB5F-1419999CCEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92DD54E8-F7BA-4C43-BB5F-1419999CCEC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,10 +12,12 @@
     <None Remove="Mapping\Match.hbm.xml" />
     <None Remove="Mapping\Player.hbm.xml" />
     <None Remove="Mapping\Round.hbm.xml" />
+    <None Remove="Mapping\Tournament.hbm.xml" />
     <None Remove="Mapping\TournamentType.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Mapping\Tournament.hbm.xml" />
     <EmbeddedResource Include="Mapping\TournamentType.hbm.xml" />
     <EmbeddedResource Include="Mapping\Round.hbm.xml" />
     <EmbeddedResource Include="Mapping\Match.hbm.xml" />

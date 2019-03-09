@@ -1,33 +1,5 @@
-﻿@model IEnumerator<ITU.RefereeAssistant.Domain.Models.Player>
-@helper MyButton(string name)
-{
-    <input type="button" value="@(name)" class="btn btn-success" />
-}
-<p>
-    @Html.TextBox("NewPlayer", "", new {@class = "form-control" })
-    @MyButton("+")
-</p>
-<table class=" table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-    @if (Model != null)
-    {
-        foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
+﻿@model ITU.RefereeAssistant.Domain.Models.Player
 
-                </td>
-            </tr>
-        }
-    }
 <div>
     @Html.EditorFor(player => player.Name)
 </div>

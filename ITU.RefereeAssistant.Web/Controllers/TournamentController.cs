@@ -16,6 +16,7 @@ namespace ITU.RefereeAssistant.Web.Controllers
     public class TournamentController : Controller
     {
         private PlayerService PlayerService = new PlayerService();
+        private Services.TournamentService TournamentService = new Services.TournamentService();
         private BaseService<Round> RoundService = new BaseService<Round>();
         private BaseService<Domain.TournamentType> TournamentTypeService = new BaseService<Domain.TournamentType>();
         [HttpGet]
@@ -40,13 +41,16 @@ namespace ITU.RefereeAssistant.Web.Controllers
             }
 
             var dbTourType = TournamentTypeService.Get(starter.TournamentType.Id);
-            var tourTypes = Helper.LoadTournamentTypes(@"C:\Users\Professional\YandexDisk\Обучение\C#\RefereeAssistant\ITU.RefereeAssistant.Web\bin");
+            //var tourTypes = Helper.LoadTournamentTypes(@"C:\Users\Professional\YandexDisk\Обучение\C#\RefereeAssistant\ITU.RefereeAssistant.Web\bin");
+            var tourTypes = Helper.LoadTournamentTypes(AppDomain.CurrentDomain.BaseDirectory + @"bin\");
             var tourType = tourTypes.FirstOrDefault(
                 item => item.GetType().FullName == dbTourType.TypeName);
-            var ts = new TournamentService();
-            var tour = ts.Create(starter.Players.ToArray(), tourType);
+            var ts = new BL.TournamentService();
+            var tour = ts.Create(starter.Players.ToArray(), dbTourType, User.Identity.Name, starter.Description);
+            ts.TourType = tourType; 
             var round = ts.GenerateRound(tour);
             RoundService.Save(round);
+            TournamentService.Save(tour);
             return RedirectToAction("Details", "Round", new { Id = round.Id});
         }
         public ActionResult Delete(Player player)
@@ -59,25 +63,23 @@ namespace ITU.RefereeAssistant.Web.Controllers
             PlayerService.Save(player);
             return RedirectToAction("Start");
         }
-        // GET: Tourament
-        public ActionResult Index(User user)
-        {            
-            return View("Edit", user);
+        [HttpGet]
+        [Authorize]
+        public ActionResult Overview()
+        {
+            var model = new TournamentOverview();
+            model.Tournaments = TournamentService.GetAll();
+            //model.Players = PlayerService.GetAll();
+            //var types = TournamentTypeService.GetAll();
+            //var selectList = new SelectList(types, "Id", "Name");
+            //model.tournamentTypes = selectList;
+            return View(model);
         }
         [HttpPost]
-        public ActionResult Save(User user)
+        public void RoundLast(Tournament entity)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("Edit", user);
-            }
-            if (user.Age < 10)
-            {
-                ModelState.AddModelError("Age", "Что-то не так с возрастом");
-                return View("Edit", user);
-            }
-            user.Age *= 2;
-            return View("Edit", user);
+            var t = "test";
         }
+        // GET: Tourament
     }
 }

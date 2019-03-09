@@ -16,9 +16,9 @@ namespace ITU.RefereeAssistant.BL
         /// <returns>Список операций</returns>
         public static List<ITournamentType> LoadTournamentTypes(string path = "")
         {
-            var result = new List<ITournamentType>();
+            var result = new List<ITournamentType>();            
 
-            var currentDirectory = string.IsNullOrWhiteSpace(path) ? Environment.CurrentDirectory : path;
+            var currentDirectory = string.IsNullOrWhiteSpace(path) ? AppDomain.CurrentDomain.BaseDirectory + @"bin\" : path;
 
             var dlls = Directory.GetFiles(currentDirectory, "*.dll");
 

@@ -13,6 +13,8 @@ namespace ITU.RefereeAssistant.Web.Models
     {
         [Display(Name = "Система проведения турнира")]
         public TournamentType TournamentType{get; set;}
+        [Display(Name = "Название турнира")]
+        public string Description { get; set; }
         [Display(Name = "Участники")]
         public  IEnumerable<Player> Players { get; set; }
         public SelectList tournamentTypes { get; set; }
