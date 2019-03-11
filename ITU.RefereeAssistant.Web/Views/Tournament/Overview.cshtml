@@ -1,0 +1,19 @@
+﻿@model ITU.RefereeAssistant.Web.Models.TournamentOverview
+
+@{
+    ViewBag.Title = "Ваши турниры";
+}
+
+<h2>Турниры</h2>
+@Html.ActionLink("Начать новый турнир", "Start", "Tournament")
+<div style="width:50%;">
+    <ul class="list-group">
+        @foreach (var tournament in Model.Tournaments)
+        {            
+            <li class="list-group-item">
+                @Html.Partial("Tournament", tournament)
+            </li>            
+        }
+    </ul>
+</div>
+

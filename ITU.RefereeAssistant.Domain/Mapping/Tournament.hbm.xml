@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="ITU.RefereeAssistant.Domain.Models" assembly="ITU.RefereeAssistant.Domain">
+
+  <class name="Tournament" table="Tournament">
+
+    <id name="Id">
+      <generator class="native" />
+    </id>
+    <property name="Description"/>
+    <property name="Author" />    
+    <many-to-one name="Type" class="ITU.RefereeAssistant.Domain.TournamentType"/>
+    <set name="Rounds" table="Round" lazy="false" cascade ="all-delete-orphan" inverse="true" fetch="select">
+      <key>
+        <column name="Tournament" not-null="true" />
+      </key>
+      <one-to-many class="Round" />
+    </set>
+  </class>
+
+</hibernate-mapping>

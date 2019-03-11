@@ -1,0 +1,7 @@
+﻿@model ITU.RefereeAssistant.Domain.Models.Tournament
+<div class="row">
+    <div class="col-md-8">@Html.DisplayFor(tournament => tournament.Description)</div>
+    <div class="col-md-4">
+        @Html.ActionLink("Перейти к раундам", "ShowLastRound", "Tournament", new { id = @Model.Id }, "")       
+    </div>
+</div>
