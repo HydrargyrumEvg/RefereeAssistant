@@ -3,7 +3,7 @@
     var count = 0;
 }
 
-<h2>Раунд</h2>
+<h2>Раунд @Model.OrderNum</h2>
 <div style="width:50%;">
     <ul class="list-group">
         @foreach (var match in Model.Matches)
@@ -15,5 +15,13 @@
             count++;
         }
     </ul>
+</div>
+<div class="alert alert-warning" role="alert" style="width:50%;">
+    @ViewBag.Message
+</div>
+<div>
+    @{
+        @Html.Partial("RoundNavigation", Model)
+    }
 </div>
 

@@ -16,7 +16,7 @@ namespace ITU.RefereeAssistant.Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Tournament", action = "Start", id = UrlParameter.Optional }
+                defaults: new { controller = "Tournament", action = "Overview", id = UrlParameter.Optional }
             );
         }
     }

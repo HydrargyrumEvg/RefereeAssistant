@@ -190,12 +190,15 @@
     <Compile Include="Controllers\TournamentController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\NHibernateHelper.cs" />
+    <Compile Include="Filters\AuthorAuthAttribute.cs" />
+    <Compile Include="Filters\PermissionManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RoundDetails.cs" />
     <Compile Include="Models\TournamentOverview.cs" />
     <Compile Include="Models\TournamentStarter.cs" />
     <Compile Include="Models\TournamentType.cs" />
@@ -282,6 +285,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\Tournament.cshtml" />
     <Content Include="Views\Tournament\Overview.cshtml" />
+    <Content Include="Views\Shared\RoundNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\User\" />

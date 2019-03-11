@@ -8,10 +8,22 @@ namespace ITU.RefereeAssistant.Domain.TourType
 {
     public class CircleTourType : ITournamentType
     {
-        public string Name => "Круговая система";
-        
-        public Round GetNextRound(IEnumerable<Player> players, IEnumerable<Round> rounds)
-        {            
+        public string Name => "Круговая система";        
+        public IEnumerable<Player> players { get; set; }
+        public IEnumerable<Round> rounds { get; set; }
+        public int RoundLimit()
+        {
+            int playerCount = players.Count();
+            if (players.Count() == 0)
+            {
+                Round firstRound = rounds.SingleOrDefault(r => r.OrderNum == 1);
+                playerCount = firstRound.Matches.Count() * 2;
+            }
+            return Convert.ToInt32(Math.Log(playerCount, 2));
+        }
+
+        public Round GetNextRound()
+        {
             var playerCount = players.Count();
             var roundCount = rounds.Count();
             var roundLimit = Math.Log(playerCount, 2);
@@ -24,8 +36,8 @@ namespace ITU.RefereeAssistant.Domain.TourType
             if (lastRound != null)
             {
                 foreach (var match in lastRound.Matches)
-                {                    
-                    if (match.MatchResult == MatchResult.FirstWin) 
+                {
+                    if (match.MatchResult == MatchResult.FirstWin)
                     {
                         winners.Add(match.FirstPlayer);
                     }
@@ -43,15 +55,14 @@ namespace ITU.RefereeAssistant.Domain.TourType
             var matchCount = currentPlayers.Count() / 2;
             for (int i = 0; i < matchCount; i++)
             {
-                var match = new Match();
-                var player1 = currentPlayers.ElementAt(i * 2);
-                var player2 = currentPlayers.ElementAt(i * 2 + 1);
-
-                match.FirstPlayer = player1;
-                match.SecondPlayer = player2;                
+                var match = new Match()
+                {
+                    FirstPlayer = currentPlayers.ElementAt(i * 2),
+                    SecondPlayer = currentPlayers.ElementAt(i * 2 + 1)
+                };
 
                 round.AddMatch(match);
-            }            
+            }
             return round;
         }
     }

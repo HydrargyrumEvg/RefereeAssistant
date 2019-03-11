@@ -9,7 +9,7 @@
 @Html.EditorFor(item => item.MatchResult)
 
 <script>
-    function MatchResultSend@(count)(MatchResult) {
+    function MatchResultSend@(count)(matchResult) {
         $.ajax({
             url: "/Round/SaveMatchResult",
             type: "POST",

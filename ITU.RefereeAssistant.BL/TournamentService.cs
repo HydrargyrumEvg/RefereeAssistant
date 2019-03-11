@@ -32,9 +32,9 @@ namespace ITU.RefereeAssistant.BL
         {            
             var players = tournament.Start;            
 
-            var round = TourType.GetNextRound(players, tournament.Rounds);
+            var round = TourType.GetNextRound();
 
-            tournament.Rounds.Add(round);
+            tournament.AddRound(round);
 
             return round;           
         }

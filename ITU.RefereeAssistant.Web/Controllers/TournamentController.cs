@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace ITU.RefereeAssistant.Web.Controllers
 {
+    [Authorize]
     public class TournamentController : Controller
     {
         private PlayerService PlayerService = new PlayerService();
@@ -32,26 +33,29 @@ namespace ITU.RefereeAssistant.Web.Controllers
         [HttpPost]
         public ActionResult Start(TournamentStarter starter)
         {
-            if (starter.Players.Any())
+            if (ModelState.IsValid)
             {
-                foreach (var player in starter.Players)
+                if (starter.Players.Any())
                 {
-                    PlayerService.Save(player);
+                    foreach (var player in starter.Players)
+                    {
+                        PlayerService.Save(player);
+                    }
                 }
-            }
 
-            var dbTourType = TournamentTypeService.Get(starter.TournamentType.Id);
-            //var tourTypes = Helper.LoadTournamentTypes(@"C:\Users\Professional\YandexDisk\Обучение\C#\RefereeAssistant\ITU.RefereeAssistant.Web\bin");
-            var tourTypes = Helper.LoadTournamentTypes(AppDomain.CurrentDomain.BaseDirectory + @"bin\");
-            var tourType = tourTypes.FirstOrDefault(
-                item => item.GetType().FullName == dbTourType.TypeName);
-            var ts = new BL.TournamentService();
-            var tour = ts.Create(starter.Players.ToArray(), dbTourType, User.Identity.Name, starter.Description);
-            ts.TourType = tourType; 
-            var round = ts.GenerateRound(tour);
-            RoundService.Save(round);
-            TournamentService.Save(tour);
-            return RedirectToAction("Details", "Round", new { Id = round.Id});
+                var dbTourType = TournamentTypeService.Get(starter.TournamentType.Id);
+                var tourTypes = Helper.LoadTournamentTypes(AppDomain.CurrentDomain.BaseDirectory + @"bin\");
+                var tourType = tourTypes.FirstOrDefault(
+                    item => item.GetType().FullName == dbTourType.TypeName);
+                tourType.players = starter.Players;
+                var ts = new BL.TournamentService();
+                ts.TourType = tourType;
+                var tour = ts.Create(starter.Players.ToArray(), dbTourType, User.Identity.Name, starter.Description);
+                var round = ts.GenerateRound(tour);
+                TournamentService.Save(tour);
+                return RedirectToAction("Details", "Round", new { Id = round.Id });
+            }
+            return View(starter);
         }
         public ActionResult Delete(Player player)
         {
@@ -63,23 +67,20 @@ namespace ITU.RefereeAssistant.Web.Controllers
             PlayerService.Save(player);
             return RedirectToAction("Start");
         }
-        [HttpGet]
-        [Authorize]
+        [HttpGet]        
         public ActionResult Overview()
         {
             var model = new TournamentOverview();
-            model.Tournaments = TournamentService.GetAll();
-            //model.Players = PlayerService.GetAll();
-            //var types = TournamentTypeService.GetAll();
-            //var selectList = new SelectList(types, "Id", "Name");
-            //model.tournamentTypes = selectList;
+            model.Tournaments = TournamentService.GetAll();            
             return View(model);
         }
-        [HttpPost]
-        public void RoundLast(Tournament entity)
+        [HttpGet]
+        public ActionResult ShowLastRound(long Id)
         {
-            var t = "test";
-        }
-        // GET: Tourament
+            Tournament tour = TournamentService.Get(Id);
+            int maxOrderNum = tour.Rounds.Max(r => r.OrderNum);
+            long lastRoundId = tour.Rounds.SingleOrDefault(r => r.OrderNum == maxOrderNum).Id;            
+            return RedirectToAction("Details", "Round", new { Id=lastRoundId});
+        }        
     }
 }

@@ -9,12 +9,34 @@ namespace ITU.RefereeAssistant.Domain.TourType
     public class OlympicTourType : ITournamentType
     {
         public string Name => "Олимпийская система";
-        
-        public Round GetNextRound(IEnumerable<Player> players, IEnumerable<Round> rounds)
-        {            
-            var playerCount = players.Count();
+        public IEnumerable<Player> players { get; set; }
+        public IEnumerable<Round> rounds { get; set; }
+        public OlympicTourType()
+        {
+            players = new List<Player>();
+            rounds = new List<Round>();
+        }
+        public int RoundLimit()
+        {
+            int playerCount = 0;
+            if (players != null)
+            {
+                playerCount = players.Count();
+            }
+            if (playerCount == 0)
+            { 
+                Round firstRound = rounds.SingleOrDefault(r => r.OrderNum == 1);
+                playerCount = firstRound.Matches.Count() * 2;
+            }
+            double d = Math.Log(playerCount, 2);
+            int i = Convert.ToInt32(Math.Floor(d));
+            return i;
+        }
+
+        public Round GetNextRound()
+        {                        
             var roundCount = rounds.Count();
-            var roundLimit = Math.Log(playerCount, 2);
+            var roundLimit = this.RoundLimit();
             if (roundCount >= roundLimit)
             {
                 return null;
@@ -39,7 +61,7 @@ namespace ITU.RefereeAssistant.Domain.TourType
                 ? players
                 : winners;
 
-            var round = new Round();
+            var round = new Round();            
             var matchCount = currentPlayers.Count() / 2;
             for (int i = 0; i < matchCount; i++)
             {
@@ -52,6 +74,6 @@ namespace ITU.RefereeAssistant.Domain.TourType
                 round.AddMatch(match);
             }            
             return round;
-        }
+        }        
     }
 }

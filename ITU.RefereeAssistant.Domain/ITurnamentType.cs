@@ -13,11 +13,14 @@ namespace ITU.RefereeAssistant.Domain
         /// <summary>
         /// Название
         /// </summary>
-        string Name { get; }         
+        string Name { get; }
+        IEnumerable<Player> players { get; set; }
+        IEnumerable<Round> rounds { get; set; }
         /// <summary>
         /// Получить следующий раунд
         /// </summary>
         /// <returns></returns>
-        Round GetNextRound(IEnumerable<Player> players, IEnumerable<Round> rounds);
+        Round GetNextRound();
+        int RoundLimit();
     }
 }

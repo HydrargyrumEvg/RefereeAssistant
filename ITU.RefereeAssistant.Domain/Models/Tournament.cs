@@ -40,5 +40,11 @@ namespace ITU.RefereeAssistant.Domain.Models
         {
             throw new NotImplementedException();
         }
+        public virtual void AddRound(Round round)
+        {
+            round.Tournament = this;
+            round.OrderNum = this.Rounds.Count + 1;
+            Rounds.Add(round);
+        }
     }
 }

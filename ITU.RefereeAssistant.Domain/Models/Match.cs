@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ITU.RefereeAssistant.Domain.Models
 {
@@ -44,6 +45,7 @@ namespace ITU.RefereeAssistant.Domain.Models
         /// <summary>
         /// Результат матча
         /// </summary>
+        [Required (ErrorMessage="Поле должно быть установлено")]
         public virtual MatchResult MatchResult { get; set; }
 
         public virtual Round Round { get; set; }

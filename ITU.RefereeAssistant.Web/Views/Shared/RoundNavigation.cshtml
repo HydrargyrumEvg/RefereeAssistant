@@ -1,0 +1,29 @@
+﻿@model ITU.RefereeAssistant.Domain.Models.Round
+
+<div class="btn-toolbar" role="toolbar" aria-label="RoundNavigation">
+    <div class="btn-group btn-group-sm" role="group" aria-label="PrevRounds">
+        @{
+            foreach (var item in Model.Tournament.Rounds.Where(r => r.OrderNum < Model.OrderNum).OrderBy(r => r.OrderNum))
+            {                
+                <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='@Url.Action("Details", new { Id = item.Id })'">@item.OrderNum</button>
+            }
+        }
+    </div>
+    <div class="btn-group btn-group-sm" role="group" aria-label="CurrentRound">
+        <button type="button" class="btn btn-secondary btn-sm" disabled>@Model.OrderNum</button>
+    </div>
+    <div class="btn-group btn-group-sm" role="group" aria-label="PrevRounds">
+        @if (Model.Tournament.Rounds.Max(r => r.OrderNum) > Model.OrderNum)
+        {
+            foreach (var item in Model.Tournament.Rounds.Where(r => r.OrderNum > Model.OrderNum).OrderBy(r => r.OrderNum))
+            {                
+                <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='@Url.Action("Details", new { Id = item.Id })'">@item.OrderNum</button>
+            }
+        }
+        else
+        { 
+            <button type="button" class = "btn btn-secondary btn-sm" onclick="location.href='@Url.Action("GenerateNextRound", new { Id = Model.Id })'">Следующий раунд</button>                    
+        }
+</div>
+    
+</div>
